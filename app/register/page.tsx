@@ -20,7 +20,6 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
 
-    // Сохраняем пользователя в localStorage (без хеширования)
     const users = JSON.parse(localStorage.getItem("users") || "[]");
 
     if (users.find((u: any) => u.email === email)) {
@@ -32,7 +31,7 @@ export default function RegisterPage() {
     users.push({
       email,
       username,
-      password, // сохраняем пароль как есть (небезопасно, но для демо пойдёт)
+      password,
       createdAt: new Date().toISOString(),
     });
 
@@ -51,9 +50,11 @@ export default function RegisterPage() {
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-black/60 to-black/80 pointer-events-none" />
 
         <div className="relative z-20 w-full max-w-lg bg-black/30 backdrop-blur-xl rounded-3xl border border-white/10 p-10 shadow-2xl">
-          <h1 className="text-4xl font-bold text-center mb-3">Register</h1>
+          <h1 className="text-4xl font-bold text-center mb-3 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+            Register
+          </h1>
           <p className="text-center text-white/60 mb-10">
-            Create your new account
+            Create your Titanium Client account
           </p>
 
           {error && (
@@ -69,7 +70,7 @@ export default function RegisterPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-purple-500 outline-none"
+              className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-green-500 outline-none transition"
             />
 
             <input
@@ -78,7 +79,7 @@ export default function RegisterPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-purple-500 outline-none"
+              className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-green-500 outline-none transition"
             />
 
             <input
@@ -87,7 +88,7 @@ export default function RegisterPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-purple-500 outline-none"
+              className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-green-500 outline-none transition"
             />
 
             <button
@@ -96,7 +97,7 @@ export default function RegisterPage() {
               className={`mt-4 py-4 rounded-xl font-semibold transition ${
                 loading
                   ? "bg-gray-600 cursor-not-allowed"
-                  : "bg-purple-600 hover:bg-purple-700"
+                  : "bg-green-600 hover:bg-green-700"
               }`}
             >
               {loading ? "Creating account..." : "Create Account"}
@@ -106,7 +107,7 @@ export default function RegisterPage() {
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="text-purple-400 hover:text-purple-300"
+                className="text-green-400 hover:text-green-300 transition"
               >
                 Login
               </Link>

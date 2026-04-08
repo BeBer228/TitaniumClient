@@ -17,7 +17,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-6xl font-extrabold mb-20 text-center"
+            className="text-6xl font-extrabold mb-20 text-center bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
           >
             Pricing
           </motion.h1>

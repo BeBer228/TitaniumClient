@@ -30,7 +30,7 @@ export default function PricingCard({
         flex flex-col
         shadow-xl shadow-black/40
         border border-white/10
-        hover:border-white/20
+        hover:border-green-500/30
         transition-all
       "
     >
@@ -53,10 +53,10 @@ export default function PricingCard({
           w-full
           py-3
           rounded-xl
-          bg-white/10
+          bg-green-600
           text-white
           font-medium
-          hover:bg-white/20
+          hover:bg-green-700
           transition-colors
         "
       >

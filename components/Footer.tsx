@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -40,9 +41,11 @@ export default function Footer() {
         "
       >
         <div className="flex flex-col gap-3 max-w-xs">
-          <h3 className="text-xl font-semibold text-white">Async</h3>
+          <h3 className="text-xl font-semibold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+            Titanium Client
+          </h3>
           <p className="text-sm text-white/50 leading-relaxed">
-            © {new Date().getFullYear()} Async Client.
+            © {new Date().getFullYear()} Titanium Client.
             <br />
             All rights reserved.
           </p>
@@ -52,7 +55,7 @@ export default function Footer() {
               href="https://finikov.one"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-blue-200 to-blue-400 text-transparent bg-clip-text transition"
+              className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent transition"
             >
               finikov
             </a>
@@ -62,43 +65,43 @@ export default function Footer() {
         <div className="flex gap-20">
           <div className="flex flex-col gap-3">
             <h4 className="text-lg font-semibold text-white">Platform</h4>
-            <a className="hover:text-white transition" href="#">
+            <Link href="/" className="hover:text-green-400 transition">
               Home
-            </a>
-            <a className="hover:text-white transition" href="#">
+            </Link>
+            <Link href="/pricing" className="hover:text-green-400 transition">
               Purchase
-            </a>
-            <a className="hover:text-white transition" href="#">
+            </Link>
+            <Link href="/faq" className="hover:text-green-400 transition">
               FAQ
-            </a>
+            </Link>
           </div>
 
           <div className="flex flex-col gap-3">
             <h4 className="text-lg font-semibold text-white">Account</h4>
-            <a className="hover:text-white transition" href="#">
+            <Link href="/login" className="hover:text-green-400 transition">
               Login
-            </a>
-            <a className="hover:text-white transition" href="#">
+            </Link>
+            <Link href="/register" className="hover:text-green-400 transition">
               Register
-            </a>
+            </Link>
           </div>
 
           <div className="flex flex-col gap-3">
             <h4 className="text-lg font-semibold text-white">Contacts</h4>
-            <a className="hover:text-white transition" href="#">
+            <a href="#" className="hover:text-green-400 transition">
               Telegram
             </a>
-            <a className="hover:text-white transition" href="#">
+            <a href="#" className="hover:text-green-400 transition">
               Discord
             </a>
-            <a className="hover:text-white transition" href="#">
+            <a href="#" className="hover:text-green-400 transition">
               VK
             </a>
           </div>
 
           <div className="flex flex-col gap-3">
             <h4 className="text-lg font-semibold text-white">Legal</h4>
-            <a className="hover:text-white transition" href="#">
+            <a href="#" className="hover:text-green-400 transition">
               License Agreement
             </a>
           </div>

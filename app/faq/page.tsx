@@ -37,19 +37,19 @@ export default function FAQPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-6xl font-extrabold mb-16 text-center"
+            className="text-6xl font-extrabold mb-16 text-center bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
           >
             FAQ
           </motion.h1>
 
           <FAQCard
-            question="How do I launch the client?"
+            question="How do I launch Titanium Client?"
             answer="First, download the launcher and open it. In the window that appears, you will see a field where you can set RAM allocation. We recommend assigning no more than 8 GB. After that, press the Start button and wait for the client to load."
           />
 
           <FAQCard
             question="How do I load a config into the client?"
-            answer="To load a config, first launch the client at least once. Then go to this directory: C:\\Async\\beta\\client\\configs and place your .async config file into that folder."
+            answer="To load a config, first launch the client at least once. Then go to this directory: C:\\TitaniumClient\\beta\\client\\configs and place your .titanium config file into that folder."
           />
 
           <FAQCard

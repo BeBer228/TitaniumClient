@@ -62,7 +62,7 @@ export default function Loader({ onFinished, durationMs = 1000 }: LoaderProps) {
           </motion.div>
 
           <motion.div
-            className="w-10 h-10 border-4 border-white/20 border-t-white rounded-full"
+            className="w-10 h-10 border-4 border-white/20 border-t-green-500 rounded-full"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1, rotate: 360 }}
             exit={{ opacity: 0, scale: 0.9 }}

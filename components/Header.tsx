@@ -31,6 +31,9 @@ export default function Header() {
             className="flex items-center gap-3 group transition hover:opacity-100"
           >
             <Image src="/icon.png" alt="Icon" width={45} height={45} priority />
+            <span className="text-white text-xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+              Titanium Client
+            </span>
           </Link>
 
           <div className="flex items-center gap-12 text-white/85">
@@ -41,9 +44,9 @@ export default function Header() {
               <House
                 size={24}
                 weight="fill"
-                className="group-hover:text-white transition"
+                className="group-hover:text-green-500 transition"
               />
-              <span className="text-sm group-hover:text-white transition">
+              <span className="text-sm group-hover:text-green-500 transition">
                 Home
               </span>
             </Link>
@@ -55,9 +58,9 @@ export default function Header() {
               <ShoppingCartSimple
                 size={24}
                 weight="fill"
-                className="group-hover:text-white transition"
+                className="group-hover:text-green-500 transition"
               />
-              <span className="text-sm group-hover:text-white transition">
+              <span className="text-sm group-hover:text-green-500 transition">
                 Pricing
               </span>
             </Link>
@@ -69,9 +72,9 @@ export default function Header() {
               <Question
                 size={24}
                 weight="fill"
-                className="group-hover:text-white transition"
+                className="group-hover:text-green-500 transition"
               />
-              <span className="text-sm group-hover:text-white transition">
+              <span className="text-sm group-hover:text-green-500 transition">
                 FAQ
               </span>
             </Link>
@@ -84,8 +87,8 @@ export default function Header() {
               text-white text-sm font-medium
               px-5 py-2
               rounded-xl
-              bg-white/10
-              hover:bg-white/20
+              bg-green-600
+              hover:bg-green-700
               transition-colors
               backdrop-blur-xl
             "
