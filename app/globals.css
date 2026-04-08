@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #22c55e;
-    --primary-dark: #16a34a;
-    --primary-light: #4ade80;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
@@ -17,69 +14,15 @@
     --font-mono: var(--font-geist-mono);
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
 body {
     background: var(--background);
     color: var(--foreground);
     font-family: Unbounded, sans-serif;
-}
-
-.bg-purple-600 { background-color: var(--primary) !important; }
-.bg-purple-700 { background-color: var(--primary-dark) !important; }
-.hover\:bg-purple-700:hover { background-color: var(--primary-dark) !important; }
-
-.text-purple-400 { color: var(--primary) !important; }
-.text-purple-500 { color: var(--primary) !important; }
-.text-purple-600 { color: var(--primary) !important; }
-.hover\:text-purple-300:hover { color: var(--primary-light) !important; }
-.hover\:text-purple-400:hover { color: var(--primary) !important; }
-
-.border-purple-500 { border-color: var(--primary) !important; }
-.focus\:border-purple-500:focus { border-color: var(--primary) !important; }
-
-a:not(.no-green):hover {
-    color: var(--primary) !important;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-}
-
-* {
-    transition-property: background-color, border-color, color;
-    transition-duration: 0.2s;
-    transition-timing-function: ease;
-}
-
-.gradient-text {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-@keyframes greenPulse {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-    }
-    50% {
-        box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-    }
-}
-
-.green-pulse {
-    animation: greenPulse 1.5s infinite;
 }
