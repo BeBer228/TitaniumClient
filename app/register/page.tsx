@@ -6,7 +6,6 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GridBackground from "@/components/GridBackground";
-import bcrypt from "bcryptjs";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -21,8 +20,7 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
+    // Сохраняем пользователя в localStorage (без хеширования)
     const users = JSON.parse(localStorage.getItem("users") || "[]");
 
     if (users.find((u: any) => u.email === email)) {
@@ -34,12 +32,11 @@ export default function RegisterPage() {
     users.push({
       email,
       username,
-      password: hashedPassword,
+      password, // сохраняем пароль как есть (небезопасно, но для демо пойдёт)
       createdAt: new Date().toISOString(),
     });
 
     localStorage.setItem("users", JSON.stringify(users));
-
     localStorage.setItem("currentUser", JSON.stringify({ email, username }));
 
     router.push("/dashboard");
