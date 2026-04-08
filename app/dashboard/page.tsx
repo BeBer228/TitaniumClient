@@ -12,13 +12,32 @@ export default function Dashboard() {
   const [user, setUser] = useState<{ email: string; username: string } | null>(null);
 
   useEffect(() => {
-    const currentUser = localStorage.getItem("currentUser");
-    if (!currentUser) {
-      router.push("/login");
-      return;
-    }
-    setUser(JSON.parse(currentUser));
+    // Проверяем наличие пользователя при загрузке
+    const checkAuth = () => {
+      const currentUser = localStorage.getItem("currentUser");
+      if (!currentUser) {
+        router.push("/login");
+        return;
+      }
+      try {
+        setUser(JSON.parse(currentUser));
+      } catch (e) {
+        localStorage.removeItem("currentUser");
+        router.push("/login");
+      }
+    };
+
+    checkAuth();
   }, [router]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    router.push("/login");
+  };
+
+  if (!user) {
+    return <Loader onFinished={() => {}} />;
+  }
 
   return (
     <>
@@ -27,22 +46,19 @@ export default function Dashboard() {
         <>
           <Header />
 
-          <main className="min-h-screen text-white bg-black px-48 pt-40">
+          <main className="min-h-screen text-white bg-black px-4 md:px-12 lg:px-48 pt-40">
             <h1 className="text-5xl font-bold mb-6">Dashboard</h1>
             <p className="text-xl text-white/70">
-              Welcome, <span className="text-green-400">{user?.username || "User"}</span>
+              Welcome, <span className="text-green-400">{user.username || "User"}</span>
             </p>
 
             <div className="mt-10 grid md:grid-cols-2 gap-6">
               <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 p-6">
                 <h2 className="text-2xl font-semibold mb-3 text-green-400">Profile Info</h2>
-                <p className="text-white/80">Email: {user?.email}</p>
-                <p className="text-white/80">Username: {user?.username}</p>
+                <p className="text-white/80 break-all">Email: {user.email}</p>
+                <p className="text-white/80">Username: {user.username}</p>
                 <button
-                  onClick={() => {
-                    localStorage.removeItem("currentUser");
-                    router.push("/login");
-                  }}
+                  onClick={handleLogout}
                   className="mt-4 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition"
                 >
                   Logout
