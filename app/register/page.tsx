@@ -1,11 +1,50 @@
 "use client";
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GridBackground from "@/components/GridBackground";
+import bcrypt from "bcryptjs";
 
 export default function RegisterPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    if (users.find((u: any) => u.email === email)) {
+      setError("Пользователь с таким email уже существует");
+      setLoading(false);
+      return;
+    }
+
+    users.push({
+      email,
+      username,
+      password: hashedPassword,
+      createdAt: new Date().toISOString(),
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    localStorage.setItem("currentUser", JSON.stringify({ email, username }));
+
+    router.push("/dashboard");
+  };
+
   return (
     <>
       <Header />
@@ -20,29 +59,50 @@ export default function RegisterPage() {
             Create your new account
           </p>
 
-          <div className="flex flex-col gap-5">
+          {error && (
+            <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-xl text-red-400 text-center">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleRegister} className="flex flex-col gap-5">
             <input
               type="email"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
               className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-purple-500 outline-none"
             />
 
             <input
               type="text"
               placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
               className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-purple-500 outline-none"
             />
 
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
               className="bg-black/40 px-5 py-4 rounded-xl border border-white/10 focus:border-purple-500 outline-none"
             />
 
             <button
-              className={`mt-4 py-4 rounded-xl font-semibold transition bg-purple-600 hover:bg-purple-700`}
+              type="submit"
+              disabled={loading}
+              className={`mt-4 py-4 rounded-xl font-semibold transition ${
+                loading
+                  ? "bg-gray-600 cursor-not-allowed"
+                  : "bg-purple-600 hover:bg-purple-700"
+              }`}
             >
-              Create Account
+              {loading ? "Creating account..." : "Create Account"}
             </button>
 
             <p className="text-center mt-3 text-white/50">
@@ -54,7 +114,7 @@ export default function RegisterPage() {
                 Login
               </Link>
             </p>
-          </div>
+          </form>
         </div>
       </main>
 
